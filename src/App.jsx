@@ -13,12 +13,14 @@ export default function App() {
     website: "github.com/johnsmith",
   });
 
-  const [education, setEducation] = useState({
-    school: "University of New York",
-    degree: "Bachelor's",
-    major: "Computer Science",
-    graduation: "2026",
-  });
+  const [education, setEducation] = useState([
+    {
+      school: "University of New York",
+      degree: "Bachelor's",
+      major: "Computer Science",
+      date: "Aug 2022 - May 2026",
+    },
+  ]);
 
   return (
     <div className="flex gap-8 p-5">
@@ -29,7 +31,7 @@ export default function App() {
         />
         <Education education={education} setEducation={setEducation} />
       </div>
-      <Resume generalInfo={generalInfo} />
+      <Resume generalInfo={generalInfo} education={education} />
     </div>
   );
 }

@@ -4,7 +4,7 @@ export default function GeneralInfo({ generalInfo, setGeneralInfo }) {
   };
 
   return (
-    <div className="flex flex-col gap-3 bg-white shadow-md p-8 rounded-md h-64 overflow-y-scroll">
+    <div className="flex flex-col gap-3 bg-white shadow-md p-8 rounded-md h-64 overflow-y-scroll scrollbar scrollbar-thumb-slate-600 scrollbar-track-slate-400">
       <h1 className="text-2xl font-bold">General Info</h1>
       {Object.keys(generalInfo).map((field) => (
         <div className="flex flex-col gap-1 items-start" key={field}>
