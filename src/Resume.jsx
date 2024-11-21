@@ -7,7 +7,7 @@ export default function Resume({
   extracurriculars,
 }) {
   return (
-    <div className="bg-white shadow-md rounded-md flex flex-col items-center w-[8.5in] min-h-[11in] font-serif gap-0">
+    <div className="bg-white shadow-md rounded-md mb-10 flex flex-col items-center w-[8.5in] min-h-[11in] font-serif gap-0">
       <p className="text-3xl font-bold mt-[0.5in]">
         {generalInfo.first + " " + generalInfo.last}
       </p>

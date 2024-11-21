@@ -24,6 +24,9 @@ export default {
         height: "height",
         spacing: "margin, padding",
       },
+      fontFamily: {
+        sans: ["Poppins", "sans-serif"], // Replace default sans if desired
+      },
     },
   },
   plugins: [scrollbar],

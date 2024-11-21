@@ -5,14 +5,12 @@ import App from "./App.jsx";
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
-    <div className="flex flex-col items-center font-sans leading-5">
-      <h1 className="text-transparent bg-clip-text bg-gradient-to-r from-white via-indigo-50 to-indigo-100 text-5xl font-extrabold text-center p-5 hover:scale-110 hover:cursor-pointer select-none transition-transform ease-in-out drop-shadow-glow">
+    <div className="flex flex-col items-center font-sans">
+      <h1 className="font-semibold text-white text-6xl tracking-tight p-8 drop-shadow-lg">
         EasyCV
       </h1>
 
-      <div className="rounded-lg">
-        <App />
-      </div>
+      <App />
     </div>
   </StrictMode>
 );

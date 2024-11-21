@@ -130,8 +130,13 @@ export default function App() {
   }, []);
 
   return (
-    <div className={`flex gap-8 p-5 ${isVisible ? "animate-fadeIn" : ""}`}>
-      <div className="flex flex-col gap-4 w-[18rem]">
+    <div
+      className={`flex justify-center gap-4
+      ${isVisible ? "animate-fadeIn" : ""}
+      [@media(max-width:1140px)]:flex-col
+      `}
+    >
+      <div className="flex flex-col gap-4">
         <GeneralInfo
           generalInfo={generalInfo}
           setGeneralInfo={setGeneralInfo}
