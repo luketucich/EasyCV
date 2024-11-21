@@ -20,6 +20,10 @@ export default {
           "100%": { opacity: "1" },
         },
       },
+      transitionProperty: {
+        height: "height",
+        spacing: "margin, padding",
+      },
     },
   },
   plugins: [scrollbar],

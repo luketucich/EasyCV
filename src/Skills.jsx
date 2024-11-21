@@ -1,4 +1,8 @@
+import { useState } from "react";
+
 export default function Skills({ skills, setSkills }) {
+  const [isFullHeight, setIsFullHeight] = useState(false);
+
   const handleChange = (section, field) => (e) => {
     setSkills((prev) => {
       return prev.map((sect) =>
@@ -57,10 +61,23 @@ export default function Skills({ skills, setSkills }) {
     );
   };
 
-  return (
-    <div className="text-gray-800 flex flex-col bg-white shadow-lg p-6 rounded-lg h-72 overflow-y-auto">
-      <h1 className="text-3xl font-semibold mb-6">Skills</h1>
+  const handleMouseEnter = () => {
+    setIsFullHeight(true);
+  };
 
+  const handleMouseLeave = () => {
+    setIsFullHeight(false);
+  };
+
+  return (
+    <div
+      className={`text-gray-800 flex flex-col bg-white shadow-lg p-6 rounded-lg
+        transition-max-height duration-1000 overflow-hidden
+        ${isFullHeight ? "max-h-screen" : "max-h-20"}`}
+      onMouseEnter={handleMouseEnter}
+      onMouseLeave={handleMouseLeave}
+    >
+      <h1 className="text-3xl font-semibold mb-6">Skills</h1>
       {skills.map((section, index) => (
         <div key={section.id}>
           {index !== 0 && (
