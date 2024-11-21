@@ -23,6 +23,40 @@ export default function Skills({ skills, setSkills }) {
     setSkills((prev) => prev.slice(0, -1));
   };
 
+  const handleAddSkill = (section) => {
+    setSkills((prev) =>
+      prev.map((sect) =>
+        sect === section ? { ...sect, skill: [...sect.skill, ""] } : sect
+      )
+    );
+    console.log(section.skill);
+  };
+
+  const handleRemoveSkill = (section) => {
+    if (section.skill.length === 1) return;
+    setSkills((prev) =>
+      prev.map((sect) =>
+        sect === section ? { ...sect, skill: sect.skill.slice(0, -1) } : sect
+      )
+    );
+  };
+
+  const handleChangeSkill = (section, index) => (e) => {
+    console.log(section, index);
+    setSkills((prev) =>
+      prev.map((sect) =>
+        sect === section
+          ? {
+              ...sect,
+              skill: sect.skill.map((skill, i) =>
+                i === index ? e.target.value : skill
+              ),
+            }
+          : sect
+      )
+    );
+  };
+
   return (
     <div className="text-gray-800 flex flex-col bg-white shadow-lg p-6 rounded-lg h-72 overflow-y-auto">
       <h1 className="text-3xl font-semibold mb-6">Skills</h1>
@@ -57,7 +91,7 @@ export default function Skills({ skills, setSkills }) {
                         {section[field].map((skill, index) => (
                           <input
                             key={section.id + field + index}
-                            onChange={handleChange(section, field)}
+                            onChange={handleChangeSkill(section, index)}
                             value={skill}
                             className="bg-gray-100 border border-gray-300 rounded-md p-3 w-full focus:outline-none focus:ring-2 focus:ring-indigo-700"
                           />
@@ -67,10 +101,16 @@ export default function Skills({ skills, setSkills }) {
                   </div>
                   {field === "skill" && (
                     <div className="flex w-full gap-2 justify-center mt-3">
-                      <button className="p-2 w-10 h-10 border border-gray-300 rounded-full hover:bg-gray-200 text-gray-800">
+                      <button
+                        onClick={() => handleRemoveSkill(section)}
+                        className="p-2 w-10 h-10 border border-gray-300 rounded-full hover:bg-gray-200 text-gray-800"
+                      >
                         -
                       </button>
-                      <button className="p-2 w-10 h-10 border border-gray-300 rounded-full hover:bg-gray-200 text-gray-800">
+                      <button
+                        onClick={() => handleAddSkill(section)}
+                        className="p-2 w-10 h-10 border border-gray-300 rounded-full hover:bg-gray-200 text-gray-800"
+                      >
                         +
                       </button>
                     </div>

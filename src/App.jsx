@@ -50,7 +50,7 @@ export default function App() {
         <Education education={education} setEducation={setEducation} />
         <Skills skills={skills} setSkills={setSkills} />
       </div>
-      <Resume generalInfo={generalInfo} education={education} />
+      <Resume generalInfo={generalInfo} education={education} skills={skills} />
     </div>
   );
 }
