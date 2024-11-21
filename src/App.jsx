@@ -5,6 +5,7 @@ import Resume from "./Resume";
 import Skills from "./Skills";
 import Projects from "./Projects";
 import Experience from "./Experience";
+import Extracurriculars from "./Extracurriculars";
 
 export default function App() {
   const [generalInfo, setGeneralInfo] = useState({
@@ -92,7 +93,32 @@ export default function App() {
         "Provided excellent customer service",
         "Managed order taking and delivery",
       ],
-      duration: "Feb 2022 - Aug 2022",
+      duration: "Aug 2022 - Aug 2022",
+      id: crypto.randomUUID(),
+    },
+  ]);
+
+  const [extracurriculars, setExtracurriculars] = useState([
+    {
+      organization: "Society of Computer Science",
+      position: "President",
+      location: "University of Example",
+      responsibilities: [
+        "Led weekly meetings and events",
+        "Coordinated with industry professionals for guest lectures",
+      ],
+      duration: "Sept 2022 - Present",
+      id: crypto.randomUUID(),
+    },
+    {
+      organization: "Coding Club",
+      position: "Vice President",
+      location: "University of Example",
+      responsibilities: [
+        "Organized coding workshops and hackathons",
+        "Mentored new members in various programming languages",
+      ],
+      duration: "Sept 2021 - May 2022",
       id: crypto.randomUUID(),
     },
   ]);
@@ -114,6 +140,10 @@ export default function App() {
         <Skills skills={skills} setSkills={setSkills} />
         <Projects projects={projects} setProjects={setProjects} />
         <Experience experience={experience} setExperience={setExperience} />
+        <Extracurriculars
+          extracurriculars={extracurriculars}
+          setExtracurriculars={setExtracurriculars}
+        />
       </div>
       <Resume
         generalInfo={generalInfo}
@@ -121,6 +151,7 @@ export default function App() {
         skills={skills}
         projects={projects}
         experience={experience}
+        extracurriculars={extracurriculars}
       />
     </div>
   );
