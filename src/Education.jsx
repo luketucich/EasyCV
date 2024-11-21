@@ -1,12 +1,16 @@
-export default function GeneralInfo({ education, setEducation }) {
-  const handleChange = (field) => (e) => {
-    setEducation((prev) => ({ ...prev, [field]: e.target.value }));
+export default function Education({ education, setEducation }) {
+  const handleChange = (school, field) => (e) => {
+    setEducation((prev) => {
+      return prev.map((edu) =>
+        edu.id === school.id ? { ...edu, [field]: e.target.value } : edu
+      );
+    });
   };
 
   const handleAddEducation = () => {
     setEducation((prev) => [
       ...prev,
-      { school: "", degree: "", major: "", date: "" },
+      { school: "", degree: "", major: "", date: "", id: crypto.randomUUID() },
     ]);
   };
 
@@ -16,22 +20,36 @@ export default function GeneralInfo({ education, setEducation }) {
   };
 
   return (
-    <div className="flex flex-col gap-3 bg-white shadow-md p-8 rounded-md h-64 overflow-y-scroll scrollbar scrollbar-thumb-slate-600 scrollbar-track-slate-400">
+    <div className="text-slate-900 flex flex-col gap-3 bg-slate-300 shadow-md p-8 rounded-md h-72 overflow-y-scroll scrollbar scrollbar-thumb-slate-500 scrollbar-track-transparent">
       <h1 className="text-2xl font-bold">Education</h1>
-      {education.map((edu) =>
-        Object.keys(edu).map((field) => (
-          <div className="flex flex-col gap-1 items-start" key={field}>
-            <label className="font-bold text-xs">
-              {field.charAt(0).toUpperCase() + field.slice(1)}:
-            </label>
-            <input
-              value={edu[field]}
-              onChange={handleChange(field)}
-              className="border border-black border-solid rounded-md p-1"
-            />
-          </div>
-        ))
-      )}
+
+      {education.map((edu, index) => (
+        <div key={edu.id}>
+          {index !== 0 && (
+            <div className="mt-3 mb-3 flex justify-center">
+              <hr className="border-slate-400 border-t-2 w-full" />
+            </div>
+          )}
+          {Object.keys(edu).map(
+            (field) =>
+              field !== "id" && (
+                <div key={edu.id + field}>
+                  <div className="flex flex-col gap-1 items-start">
+                    <label className="font-bold text-xs">
+                      {field.charAt(0).toUpperCase() + field.slice(1)}:
+                    </label>
+                    <input
+                      value={edu[field]}
+                      onChange={handleChange(edu, field)}
+                      className="bg-slate-200 border border-slate-800 border-solid rounded-md p-1 transition-transform duration-500 ease-in-out focus:outline-slate-600 focus:scale-105"
+                    />
+                  </div>
+                </div>
+              )
+          )}
+        </div>
+      ))}
+
       <div className="flex justify-center gap-2">
         <button
           onClick={handleRemoveEducation}

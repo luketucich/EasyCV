@@ -19,6 +19,7 @@ export default function App() {
       degree: "Bachelor's",
       major: "Computer Science",
       date: "Aug 2022 - May 2026",
+      id: crypto.randomUUID(),
     },
   ]);
 
