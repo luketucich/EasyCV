@@ -1,11 +1,11 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
 
 export default function GeneralInfo({ generalInfo, setGeneralInfo }) {
   const handleChange = (field) => (e) => {
     setGeneralInfo((prev) => ({ ...prev, [field]: e.target.value }));
   };
-
   const [isFullHeight, setIsFullHeight] = useState(false);
+  const containerRef = useRef(null);
 
   const handleMouseEnter = () => {
     setIsFullHeight(true);
@@ -13,13 +13,20 @@ export default function GeneralInfo({ generalInfo, setGeneralInfo }) {
 
   const handleMouseLeave = () => {
     setIsFullHeight(false);
+    if (containerRef.current) {
+      containerRef.current.scrollTop = 0;
+    }
   };
 
   return (
     <div
-      className={`text-gray-800 flex flex-col bg-white shadow-lg p-6 rounded-lg
-         transition-max-height duration-1000 overflow-hidden
-        ${isFullHeight ? "max-h-screen" : "max-h-20"}`}
+      ref={containerRef}
+      className={`text-gray-800 flex flex-col bg-white shadow-lg p-6 rounded-lg transition-height duration-1000 overflow-hidden
+        ${
+          isFullHeight
+            ? "h-96 overflow-y-scroll scrollbar scrollbar-track-transparent scrollbar-thumb-gray-300"
+            : "h-20"
+        }`}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
     >

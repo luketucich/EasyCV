@@ -1,7 +1,8 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
 
 export default function Education({ education, setEducation }) {
   const [isFullHeight, setIsFullHeight] = useState(false);
+  const containerRef = useRef(null);
 
   const handleChange = (school, field) => (e) => {
     setEducation((prev) => {
@@ -37,13 +38,20 @@ export default function Education({ education, setEducation }) {
 
   const handleMouseLeave = () => {
     setIsFullHeight(false);
+    if (containerRef.current) {
+      containerRef.current.scrollTop = 0;
+    }
   };
 
   return (
     <div
-      className={`text-gray-800 flex flex-col bg-white shadow-lg p-6 rounded-lg
-         transition-max-height duration-1000  overflow-hidden
-        ${isFullHeight ? "max-h-screen" : "max-h-20"}`}
+      ref={containerRef}
+      className={`text-gray-800 flex flex-col bg-white shadow-lg p-6 rounded-lg transition-height duration-1000 overflow-hidden
+        ${
+          isFullHeight
+            ? "h-96 overflow-y-scroll scrollbar scrollbar-track-transparent scrollbar-thumb-gray-300"
+            : "h-20"
+        }`}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
     >

@@ -42,7 +42,7 @@ export default function App() {
 
   return (
     <div className={`flex gap-8 p-5 ${isVisible ? "animate-fadeIn" : ""}`}>
-      <div className="flex flex-col gap-4">
+      <div className="flex flex-col gap-4 w-[16rem]">
         <GeneralInfo
           generalInfo={generalInfo}
           setGeneralInfo={setGeneralInfo}
