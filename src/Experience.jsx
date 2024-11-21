@@ -1,65 +1,71 @@
 import { useState, useRef } from "react";
 
-export default function Projects({ projects, setProjects }) {
+export default function Experience({ experience, setExperience }) {
   const [isFullHeight, setIsFullHeight] = useState(false);
   const containerRef = useRef(null);
 
-  const handleChange = (project, field) => (e) => {
-    setProjects((prev) => {
-      return prev.map((proj) =>
-        proj.id === project.id ? { ...proj, [field]: e.target.value } : proj
+  const handleChange = (exp, field) => (e) => {
+    setExperience((prev) => {
+      return prev.map((item) =>
+        item.id === exp.id ? { ...item, [field]: e.target.value } : item
       );
     });
-    console.log(project);
   };
 
-  const handleAddProject = () => {
-    setProjects((prev) => [
+  const handleAddExperience = () => {
+    setExperience((prev) => [
       ...prev,
       {
-        name: "",
-        link: "",
-        stack: "",
-        bullet: [""],
-        completed: "",
+        company: "",
+        position: "",
+        location: "",
+        responsibilities: [""],
+        duration: "",
         id: crypto.randomUUID(),
       },
     ]);
   };
 
-  const handleRemoveProject = () => {
-    if (projects.length === 1) return;
-    setProjects((prev) => prev.slice(0, -1));
+  const handleRemoveExperience = () => {
+    if (experience.length === 1) return;
+    setExperience((prev) => prev.slice(0, -1));
   };
 
-  const handleAddBullet = (project) => {
-    setProjects((prev) =>
-      prev.map((proj) =>
-        proj === project ? { ...proj, bullet: [...proj.bullet, ""] } : proj
+  const handleAddResponsibility = (exp) => {
+    setExperience((prev) =>
+      prev.map((item) =>
+        item === exp
+          ? { ...item, responsibilities: [...item.responsibilities, ""] }
+          : item
       )
     );
   };
 
-  const handleRemoveBullet = (project) => {
-    if (project.bullet.length === 1) return;
-    setProjects((prev) =>
-      prev.map((proj) =>
-        proj === project ? { ...proj, bullet: proj.bullet.slice(0, -1) } : proj
-      )
-    );
-  };
-
-  const handleChangeBullet = (project, index) => (e) => {
-    setProjects((prev) =>
-      prev.map((proj) =>
-        proj === project
+  const handleRemoveResponsibility = (exp) => {
+    if (exp.responsibilities.length === 1) return;
+    setExperience((prev) =>
+      prev.map((item) =>
+        item === exp
           ? {
-              ...proj,
-              bullet: proj.bullet.map((bullet, i) =>
-                i === index ? e.target.value : bullet
+              ...item,
+              responsibilities: item.responsibilities.slice(0, -1),
+            }
+          : item
+      )
+    );
+  };
+
+  const handleChangeResponsibility = (exp, index) => (e) => {
+    setExperience((prev) =>
+      prev.map((item) =>
+        item === exp
+          ? {
+              ...item,
+              responsibilities: item.responsibilities.map((res, i) =>
+                i === index ? e.target.value : res
               ),
             }
-          : proj
+          : item
       )
     );
   };
@@ -87,57 +93,55 @@ export default function Projects({ projects, setProjects }) {
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
     >
-      <h1 className="text-3xl font-semibold mb-6">Projects</h1>
-      {projects.map((project, index) => (
-        <div key={project.id}>
+      <h1 className="text-3xl font-semibold mb-6">Experience</h1>
+      {experience.map((exp, index) => (
+        <div key={exp.id}>
           {index !== 0 && (
             <div className="mt-4 mb-4 flex justify-center">
               <hr className="border-gray-300 w-full" />
             </div>
           )}
-          {Object.keys(project).map(
+          {Object.keys(exp).map(
             (field) =>
               field !== "id" && (
                 <div
                   className="flex flex-col items-start mb-4"
-                  key={project.id + field}
+                  key={exp.id + field}
                 >
                   <label className="font-medium text-base mb-2">
-                    {field === "bullet"
-                      ? "Bullet Points:"
-                      : field.charAt(0).toUpperCase() + field.slice(1) + ":"}
+                    {field.charAt(0).toUpperCase() + field.slice(1)}:
                   </label>
                   <div className="flex w-full">
-                    {field !== "bullet" && (
+                    {field !== "responsibilities" && (
                       <input
-                        onChange={handleChange(project, field)}
-                        value={project[field]}
+                        onChange={handleChange(exp, field)}
+                        value={exp[field]}
                         className="bg-gray-100 border border-gray-300 rounded-md p-3 w-full focus:outline-none focus:ring-2 focus:ring-indigo-700"
                       />
                     )}
-                    {field === "bullet" && (
+                    {field === "responsibilities" && (
                       <div className="flex flex-col gap-2 w-full">
-                        {project[field].map((bullet, index) => (
+                        {exp[field].map((res, idx) => (
                           <input
-                            key={project.id + field + index}
-                            onChange={handleChangeBullet(project, index)}
-                            value={bullet}
+                            key={exp.id + field + idx}
+                            onChange={handleChangeResponsibility(exp, idx)}
+                            value={res}
                             className="bg-gray-100 border border-gray-300 rounded-md p-3 w-full focus:outline-none focus:ring-2 focus:ring-indigo-700"
                           />
                         ))}
                       </div>
                     )}
                   </div>
-                  {field === "bullet" && (
+                  {field === "responsibilities" && (
                     <div className="flex w-full gap-2 justify-center mt-3">
                       <button
-                        onClick={() => handleRemoveBullet(project)}
+                        onClick={() => handleRemoveResponsibility(exp)}
                         className="p-2 w-10 h-10 border border-gray-300 rounded-full hover:bg-gray-200 text-gray-800"
                       >
                         -
                       </button>
                       <button
-                        onClick={() => handleAddBullet(project)}
+                        onClick={() => handleAddResponsibility(exp)}
                         className="p-2 w-10 h-10 border border-gray-300 rounded-full hover:bg-gray-200 text-gray-800"
                       >
                         +
@@ -151,16 +155,16 @@ export default function Projects({ projects, setProjects }) {
       ))}
       <div className="flex flex-col justify-center gap-3">
         <button
-          onClick={handleRemoveProject}
+          onClick={handleRemoveExperience}
           className="p-2 border border-indigo-700 rounded-md hover:bg-indigo-700 hover:text-white text-indigo-700"
         >
-          Remove Project
+          Remove Experience
         </button>
         <button
-          onClick={handleAddProject}
+          onClick={handleAddExperience}
           className="p-2 border border-indigo-700 rounded-md hover:bg-indigo-700 hover:text-white text-indigo-700"
         >
-          Add Project
+          Add Experience
         </button>
       </div>
     </div>

@@ -1,4 +1,10 @@
-export default function Resume({ education, generalInfo, skills }) {
+export default function Resume({
+  education,
+  generalInfo,
+  skills,
+  projects,
+  experience,
+}) {
   return (
     <div className="bg-white shadow-md rounded-md flex flex-col items-center w-[8.5in] h-[11in] font-serif gap-0">
       <p className="text-3xl font-bold mt-[0.5in]">
@@ -15,7 +21,7 @@ export default function Resume({ education, generalInfo, skills }) {
           href={`https://www.${generalInfo.website}`}
           target="_blank"
           rel="noopener noreferrer"
-          className="w-max text-nowrap"
+          className="w-max text-nowrap text-blue-600 underline"
         >
           {generalInfo.website}
         </a>
@@ -65,11 +71,60 @@ export default function Resume({ education, generalInfo, skills }) {
       </div>
       <div className="flex flex-col w-[7.5in] gap-0 flex-grow-0">
         <div>
-          <p className="font-bold">Projects</p>
+          <p className="font-bold mt-5">Projects</p>
           <hr className="border-black border-t-2 w-full"></hr>
-          {skills.map((skillset) => (
-            <div key={skillset.id}>
-              <p>skillset</p>
+          {projects.map((project) => (
+            <div key={project.id}>
+              <div className="flex justify-between font-bold">
+                <p>{project.name}</p>
+                <p>
+                  {project.completed !== "" &&
+                    `Completed: ${project.completed}`}
+                </p>
+              </div>
+              <div className="flex justify-between italic">
+                <p>{project.stack.split(",").join(", ")}</p>
+                <a
+                  href={`https://www.${project.link}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-max text-nowrap text-blue-600 underline"
+                >
+                  {project.link}
+                </a>
+              </div>
+              <div className="flex flex-col mb-5">
+                {project.bullet.map((bullet) => (
+                  <div key={project.id + bullet}>
+                    <p>{`▪  ${bullet}`}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+      <div className="flex flex-col w-[7.5in] gap-0 flex-grow-0">
+        <div>
+          <p className="font-bold">Experience</p>
+          <hr className="border-black border-t-2 w-full"></hr>
+          {experience.map((job) => (
+            <div key={job.id}>
+              <div className="flex justify-between font-bold">
+                <p>{job.company}</p>
+                <p>{job.duration !== "" && `${job.duration}`}</p>
+              </div>
+              <div className="flex justify-between italic">
+                <p>{job.position}</p>
+                <p>{job.location}</p>
+              </div>
+              <div className="flex flex-col mb-5">
+                {job.responsibilities.map((bullet) => (
+                  <div key={job.id + bullet}>
+                    <p>{`▪  ${bullet}`}</p>
+                  </div>
+                ))}
+              </div>
             </div>
           ))}
         </div>
