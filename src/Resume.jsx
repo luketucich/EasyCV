@@ -31,11 +31,15 @@ export default function Resume({ education, generalInfo }) {
                 <p>{edu.date}</p>
               </div>
               <div className="flex justify-between italic">
-                <p>{edu.degree + " in " + edu.major}</p>
+                {edu.major !== "" ? (
+                  <p>{edu.degree + " in " + edu.major}</p>
+                ) : (
+                  <p>{edu.degree}</p>
+                )}
                 <p>{edu.location}</p>
               </div>
               <div className="font-bold mb-5">
-                <p>{`▪ GPA: ` + edu.gpa}</p>
+                {edu.gpa !== "" && <p>{`▪ GPA: ` + edu.gpa}</p>}
               </div>
             </div>
           ))}

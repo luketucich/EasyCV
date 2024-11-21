@@ -1,7 +1,8 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import GeneralInfo from "./GeneralInfo";
 import Education from "./Education";
 import Resume from "./Resume";
+import Skills from "./Skills";
 
 export default function App() {
   const [generalInfo, setGeneralInfo] = useState({
@@ -25,14 +26,29 @@ export default function App() {
     },
   ]);
 
+  const [skills, setSkills] = useState([
+    {
+      section: "Languages",
+      skill: ["JavaScript", "Python", "Java"],
+      id: crypto.randomUUID(),
+    },
+  ]);
+
+  const [isVisible, setIsVisible] = useState(false);
+
+  useEffect(() => {
+    setIsVisible(true);
+  }, []);
+
   return (
-    <div className="flex gap-8 p-5">
+    <div className={`flex gap-8 p-5 ${isVisible ? "animate-fadeIn" : ""}`}>
       <div className="flex flex-col gap-4">
         <GeneralInfo
           generalInfo={generalInfo}
           setGeneralInfo={setGeneralInfo}
         />
         <Education education={education} setEducation={setEducation} />
+        <Skills skills={skills} setSkills={setSkills} />
       </div>
       <Resume generalInfo={generalInfo} education={education} />
     </div>
