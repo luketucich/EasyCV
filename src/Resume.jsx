@@ -24,7 +24,21 @@ export default function Resume({ education, generalInfo }) {
         <div>
           <p className="font-bold">Education</p>
           <hr className="border-black border-t-2 w-full"></hr>
-          <p>{education[0].school}</p>
+          {education.map((edu) => (
+            <div key={edu.id}>
+              <div className="flex justify-between font-bold">
+                <p>{edu.school}</p>
+                <p>{edu.date}</p>
+              </div>
+              <div className="flex justify-between italic">
+                <p>{edu.degree + " in " + edu.major}</p>
+                <p>{edu.location}</p>
+              </div>
+              <div className="font-bold mb-5">
+                <p>{`▪ GPA: ` + edu.gpa}</p>
+              </div>
+            </div>
+          ))}
         </div>
       </div>
     </div>

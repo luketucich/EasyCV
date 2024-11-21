@@ -10,7 +10,15 @@ export default function Education({ education, setEducation }) {
   const handleAddEducation = () => {
     setEducation((prev) => [
       ...prev,
-      { school: "", degree: "", major: "", date: "", id: crypto.randomUUID() },
+      {
+        school: "",
+        location: "",
+        degree: "",
+        major: "",
+        date: "",
+        gpa: "",
+        id: crypto.randomUUID(),
+      },
     ]);
   };
 

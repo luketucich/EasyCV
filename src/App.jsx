@@ -9,16 +9,18 @@ export default function App() {
     last: "Smith",
     email: "johnsmith@example.com",
     number: "555-555-5555",
-    location: "New York, NY",
+    location: "Charlotte, NC",
     website: "github.com/johnsmith",
   });
 
   const [education, setEducation] = useState([
     {
-      school: "University of New York",
-      degree: "Bachelor's",
+      school: "University of North Carolina at Charlotte",
+      location: "Charlotte, NC",
+      degree: "B.S.",
       major: "Computer Science",
       date: "Aug 2022 - May 2026",
+      gpa: "4.0 / 4.0",
       id: crypto.randomUUID(),
     },
   ]);
