@@ -4,10 +4,10 @@ export default function GeneralInfo({ generalInfo, setGeneralInfo }) {
   };
 
   return (
-    <div className="flex flex-col gap-3 bg-white shadow-md p-8 rounded-md">
+    <div className="flex flex-col gap-3 bg-white shadow-md p-8 rounded-md h-64 overflow-y-scroll">
       <h1 className="text-2xl font-bold">General Info</h1>
       {Object.keys(generalInfo).map((field) => (
-        <div className="flex flex-col gap-1 items-star" key={field}>
+        <div className="flex flex-col gap-1 items-start" key={field}>
           <label className="font-bold text-xs">
             {field.charAt(0).toUpperCase() + field.slice(1)}:
           </label>

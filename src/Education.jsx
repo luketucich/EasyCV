@@ -4,7 +4,7 @@ export default function GeneralInfo({ education, setEducation }) {
   };
 
   return (
-    <div className="flex flex-col gap-3 bg-white shadow-md p-8 rounded-md">
+    <div className="flex flex-col gap-3 bg-white shadow-md p-8 rounded-md h-64 overflow-y-scroll">
       <h1 className="text-2xl font-bold">Education</h1>
       {Object.keys(education).map((field) => (
         <div className="flex flex-col gap-1 items-start" key={field}>
