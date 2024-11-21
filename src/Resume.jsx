@@ -63,6 +63,17 @@ export default function Resume({ education, generalInfo, skills }) {
           ))}
         </div>
       </div>
+      <div className="flex flex-col w-[7.5in] gap-0 flex-grow-0">
+        <div>
+          <p className="font-bold">Projects</p>
+          <hr className="border-black border-t-2 w-full"></hr>
+          {skills.map((skillset) => (
+            <div key={skillset.id}>
+              <p>skillset</p>
+            </div>
+          ))}
+        </div>
+      </div>
     </div>
   );
 }

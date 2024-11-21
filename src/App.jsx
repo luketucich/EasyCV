@@ -3,6 +3,7 @@ import GeneralInfo from "./GeneralInfo";
 import Education from "./Education";
 import Resume from "./Resume";
 import Skills from "./Skills";
+import Projects from "./Projects";
 
 export default function App() {
   const [generalInfo, setGeneralInfo] = useState({
@@ -34,6 +35,19 @@ export default function App() {
     },
   ]);
 
+  const [projects, setProjects] = useState([
+    {
+      name: "Wordle",
+      stack: "HTML, CSS, JavaScript",
+      bullet: [
+        "Created a clone of the popular game Wordle",
+        "Implemented responsive design for mobile and desktop",
+      ],
+      completed: "Jan 2024",
+      id: crypto.randomUUID(),
+    },
+  ]);
+
   const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
@@ -49,6 +63,7 @@ export default function App() {
         />
         <Education education={education} setEducation={setEducation} />
         <Skills skills={skills} setSkills={setSkills} />
+        <Projects projects={projects} setProjects={setProjects} />
       </div>
       <Resume generalInfo={generalInfo} education={education} skills={skills} />
     </div>
