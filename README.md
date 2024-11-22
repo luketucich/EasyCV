@@ -29,4 +29,4 @@ A web application to effortlessly create professional resumes
 
 ## Credits
 
-- PDF package from [ivmarcos](https://www.npmjs.com/package/react-to-pdf)
+- React-to-PDF package from [ivmarcos](https://www.npmjs.com/package/react-to-pdf)
