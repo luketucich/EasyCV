@@ -11,6 +11,10 @@ A web application to effortlessly create professional resumes
   <img src="https://img.shields.io/badge/JavaScript-%23F7DF1E.svg?&style=for-the-badge&logo=javascript&logoColor=black" alt="JavaScript" />
 </div>
 
+## Preview
+<img width="1075" alt="Screenshot 2024-11-21 at 8 07 32 PM" src="https://github.com/user-attachments/assets/fcb1f370-3005-4254-a93e-553598d55f9e">
+
+
 ## What I Learned
 
 - Setting up and configuring a React development environment
