@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { usePDF } from "react-to-pdf";
 import GeneralInfo from "./GeneralInfo";
 import Education from "./Education";
 import Resume from "./Resume";
@@ -8,6 +9,7 @@ import Experience from "./Experience";
 import Extracurriculars from "./Extracurriculars";
 
 export default function App() {
+  const { toPDF, targetRef } = usePDF({ filename: "EasyCV.pdf" });
   const [generalInfo, setGeneralInfo] = useState({
     first: "John",
     last: "Smith",
@@ -110,17 +112,6 @@ export default function App() {
       duration: "Sept 2022 - Present",
       id: crypto.randomUUID(),
     },
-    {
-      organization: "Coding Club",
-      position: "Vice President",
-      location: "University of Example",
-      responsibilities: [
-        "Organized coding workshops and hackathons",
-        "Mentored new members in various programming languages",
-      ],
-      duration: "Sept 2021 - May 2022",
-      id: crypto.randomUUID(),
-    },
   ]);
 
   const [isVisible, setIsVisible] = useState(false);
@@ -149,8 +140,15 @@ export default function App() {
           extracurriculars={extracurriculars}
           setExtracurriculars={setExtracurriculars}
         />
+        <button
+          onClick={() => toPDF()}
+          className="px-4 py-3 text-xl bg-indigo-600 text-white rounded-md hover:bg-indigo-700"
+        >
+          Download PDF
+        </button>
       </div>
       <Resume
+        ref={targetRef}
         generalInfo={generalInfo}
         education={education}
         skills={skills}
